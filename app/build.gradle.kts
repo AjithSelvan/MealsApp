@@ -60,4 +60,8 @@ dependencies {
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson.convertor)
+
+    //coil
+    implementation(libs.coil)
+    implementation(libs.coil.okhttp)
 }
