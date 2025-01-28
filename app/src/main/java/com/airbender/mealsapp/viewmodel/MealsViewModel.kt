@@ -6,14 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.airbender.mealsapp.model.MealsRepository
 import com.airbender.mealsapp.model.response.MealsResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class MealsViewModel(private val repository: MealsRepository = MealsRepository()) : ViewModel() {
+class MealsViewModel(private val repository: MealsRepository = MealsRepository.getInstance()) : ViewModel() {
     val meals: MutableState<List<MealsResponse>> = mutableStateOf(emptyList())
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             meals.value = getMeals()
         }
     }
