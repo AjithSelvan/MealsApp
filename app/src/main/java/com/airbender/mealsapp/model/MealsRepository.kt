@@ -8,10 +8,12 @@ class MealsRepository(private val webService: MealsWebService = MealsWebService(
     suspend fun getMeals(): MealsCategories {
         val meals = webService.getMeals()
         cachedMeals = meals.categories
+        println("meals called from repository")
         return meals
     }
 
     fun getMeal(id: String): MealsResponse? {
+        println("meal id : $id")
         return cachedMeals.firstOrNull { it.id == id }
     }
 
