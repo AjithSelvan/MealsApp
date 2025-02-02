@@ -13,7 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.airbender.mealsapp.ui.theme.MealsAppTheme
 import com.airbender.mealsapp.ui.views.InitialScreen
-import com.airbender.mealsapp.ui.views.MealsDetailsScreen
+import com.airbender.mealsapp.ui.views.SingleMealsDetailsScreen
 import com.airbender.mealsapp.viewmodel.MealsDetailsViewModel
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +40,9 @@ fun Navigate() {
             arguments = listOf(navArgument("mealId") { type = NavType.StringType })
         ) {
             val mealDetailsViewModel : MealsDetailsViewModel = viewModel()
-            MealsDetailsScreen(mealDetailsViewModel.mealState.value)
+            SingleMealsDetailsScreen(mealDetailsViewModel.mealState.value){
+                navController.popBackStack()
+            }
         }
     }
 }

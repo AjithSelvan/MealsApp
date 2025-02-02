@@ -49,8 +49,9 @@ import com.airbender.mealsapp.viewmodel.MealsViewModel
 fun InitialScreen(navCallBack: (String) -> Unit) {
     val viewModel = MealsViewModel()
     val meals = viewModel.meals
+    val rememberedMeals = remember { meals }
     LazyColumn(modifier = Modifier.statusBarsPadding()) {
-        items(meals.value) { meal ->
+        items(rememberedMeals.value) { meal ->
             MealsDetailsScreen(meal, navCallBack)
         }
     }
